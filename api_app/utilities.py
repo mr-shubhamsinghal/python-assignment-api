@@ -1,6 +1,7 @@
 
 from datetime import datetime
 import time
+from pytz import timezone
 
 from api_app.constants import DATE_TIME_FORMAT, DATE_FORMAT, TIME_FORMAT
 from api_app.constants import (SHIFT_A_START, SHIFT_A_END,
@@ -8,8 +9,12 @@ from api_app.constants import (SHIFT_A_START, SHIFT_A_END,
 							   SHIFT_C_START, SHIFT_C_END)
 
 
-def getDateTime(datetime_str):
+def getDateTimeObj(datetime_str):
 	datetime_obj = datetime.strptime(datetime_str, DATE_TIME_FORMAT)
+	return datetime_obj
+
+def getDateTime(datetime_str):
+	datetime_obj = getDateTimeObj(datetime_str)
 	return datetime_obj.date(), datetime_obj.time()
 
 

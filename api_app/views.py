@@ -23,6 +23,7 @@ def QuestionSolutionLinks(request):
 
 @api_view(['POST'])
 def PlantProduction(request):
+	from ipdb import set_trace; set_trace()
 	serializer = StartEndTimeFormSerializer(data=request.data)
 	if serializer.is_valid():
 		startDate, startTime = getDateTime(serializer.data['start_time'])

@@ -25,7 +25,7 @@ SECRET_KEY = 'x9ds(3mk&41jr1+$wjkqky0#v0&2&atza@5lc24yr4a$be80zn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['machstatz-zoho.herokuapp.com']
 
 
 # Application definition
@@ -39,11 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'whitenoise.runserver_nostatic',
 
     'api_app.apps.ApiAppConfig'
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -122,3 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+static_root = os.path.join(BASE_DIR,'staticfiles')
+
+statifiles_storage = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
